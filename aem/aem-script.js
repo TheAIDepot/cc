@@ -106,7 +106,7 @@ function sendAiMessage() {
         const normalized = query.toLowerCase();
 
         if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {
-            botMsg.innerHTML = "Pulling data matrix... aem's current active broadcast file is situated at <code>https://theaidepot.github.io/cc/intro.mp4</code>.";
+            botMsg.innerHTML = "Pulling data matrix... aem's current active broadcast file is situated at <code>https://theaidepot.github.io/cc/aem/media/intro.mp4</code>.";
         } else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {
             botMsg.innerHTML = "You can instantly process your AEM Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
         } else {
