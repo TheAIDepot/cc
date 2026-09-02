@@ -66,7 +66,7 @@ function initAiChat() {
     messagesContainer.innerHTML = `
         <div class="message bot">
             Welcome to the <strong>Atomic Command Channel</strong>! Happy ${currentDay}! 🎮<br><br>
-            Would you like to examine my latest videos, receive a personalized recommendation, or sign up for the PBG Creators' Club membership tier?
+            Would you like to examine my latest videos, receive a personalized recommendation, or sign up for the Atomic Era Motor Creators' Club membership tier?
         </div>
     `;
 }
@@ -106,11 +106,11 @@ function sendAiMessage() {
         const normalized = query.toLowerCase();
 
         if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {
-            botMsg.innerHTML = "Pulling data matrix... aem's current active broadcast file is situated at <code>https://github.iointro.mp4</code>.";
+            botMsg.innerHTML = "Pulling data matrix... aem's current active broadcast file is situated at <code>https://theaidepot.github.io/cc/intro.mp4</code>.";
         } else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {
             botMsg.innerHTML = "You can instantly process your AEM Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
         } else {
-            botMsg.innerHTML = "I am specifically mapped to monitor the localized <code>/pbg/</code> directory structures. Ask me about our background files or timeline stream elements!";
+            botMsg.innerHTML = "I am specifically mapped to monitor the localized <code>/aem/</code> directory structures. Ask me about our background files or timeline stream elements!";
         }
 
         messagesContainer.appendChild(botMsg);
