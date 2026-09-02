@@ -1,9 +1,9 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Creators</title>
+    <title>PBG Hub — Content Creators</title>
     <style>
         /* CSS Root and Theme Properties */
         :root {
@@ -68,6 +68,14 @@ html<!DOCTYPE html>
             font-weight: bold;
         }
 
+        .nav-back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--ai-accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         /* Controls Section */
         .filter-controls {
             display: flex;
@@ -86,12 +94,9 @@ html<!DOCTYPE html>
             cursor: pointer;
         }
 
-        /* Responsive Content Workspace Matrix */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+        /* Content Workspace Card */
+        .content-wrapper {
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -100,10 +105,10 @@ html<!DOCTYPE html>
             background: var(--card-bg);
             border: 3px solid var(--border-color);
             border-radius: 8px;
-            padding: 15px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 20px;
         }
 
         .media-container {
@@ -120,17 +125,17 @@ html<!DOCTYPE html>
             object-fit: cover;
         }
 
-        /* Timeline View Specific Matrix Arrangement */
+        /* Timeline Grid View Layout */
         .timeline-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 8px;
+            gap: 10px;
         }
         .timeline-item {
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             aspect-ratio: 16/9;
             background: #333;
+            overflow: hidden;
         }
 
         /* AI Interactive Interface Widget Block */
@@ -239,6 +244,25 @@ html<!DOCTYPE html>
             z-index: 1000;
         }
 
+        /* Club Registration Module Styles */
+        .club-signup-box {
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px dashed var(--ai-accent);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .club-btn {
+            background: var(--ai-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
         /* Footer Element Section */
         footer {
             margin-top: 60px;
@@ -263,48 +287,41 @@ html<!DOCTYPE html>
 
     <!-- Small Functional Top Banners -->
     <div class="top-banners">
-        <span>[Banner] Creators Archive Path: /media/creators_banner.jpg</span>
-        <span>[Banner] Video Filter Path: /media/filter_banner.jpg</span>
+        <span>[Banner] Creator Path Focus: /pbg/media/</span>
+        <span>[Banner] Local Filter Active</span>
     </div>
 
     <header>
         <button class="theme-toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
-        <h1 id="welcome-title">Content Creators</h1>
+        <h1 id="welcome-title">PBG Channel Matrix</h1>
+        <a href="../index.html" class="nav-back-link">&larr; Return to Main Platform Hub</a>
     </header>
 
-    <!-- Platform Target Hub Control Selection Filters -->
+    <!-- Local Media Control Filter Engine -->
     <div class="filter-controls">
-        <select id="creator-select" onchange="applyFilters()">
-            <option value="all">All Creators</option>
-            <option value="pbg">PBG</option>
-            <option value="aem">AEM</option>
-            <option value="sd">SD</option>
-            <option value="bs">BS</option>
-            <option value="jd">JD</option>
-            <option value="lf">LF</option>
-        </select>
-
-        <select id="filter-select" onchange="applyFilters()">
+        <select id="filter-select" onchange="applyLocalFilters()">
             <option value="Current">Videos: Current</option>
             <option value="Last">Videos: Last</option>
             <option value="Timeline">Videos: View Timeline</option>
         </select>
     </div>
 
-    <!-- Main Content Workspace Container -->
-    <main class="content-grid" id="content-container">
-        <!-- Rendered dynamically by JavaScript execution matrix below -->
+    <!-- Creator Repository Main Node Block -->
+    <main class="content-wrapper">
+        <div class="creator-card" id="pbg-card">
+            <!-- Populated dynamically via the script logic below -->
+        </div>
     </main>
 
     <!-- AI Conversational Interface Assistant Widget Component -->
     <div class="ai-chat-widget" id="ai-widget">
         <div class="ai-chat-header">
-            <span>AI Assistant</span>
+            <span>PBG Channel AI Bot</span>
             <button class="ai-minimize-btn" onclick="minimizeAI()">Minimize</button>
         </div>
         <div class="ai-chat-messages" id="ai-messages"></div>
         <div class="ai-chat-input-area">
-            <input type="text" id="ai-input" placeholder="Ask about creator files..." onkeypress="handleAiKeyPress(event)">
+            <input type="text" id="ai-input" placeholder="Ask PBG AI Bot anything..." onkeypress="handleAiKeyPress(event)">
             <button onclick="sendAiMessage()">Send</button>
         </div>
     </div>
@@ -319,13 +336,49 @@ html<!DOCTYPE html>
         Email: contactaidepot@gmail.com | Phone: 707-506-6353<br><br>
         <small>
             YouTube™ is a trademark identification of Google LLC. Rumble™ is a trademark identification of Rumble Inc. 
-            This platform is an independent third-site concept layout built entirely by The AI Depot.<br>
-            &copy; 2026 The AI Depot. All rights reserved. Content pulled from root endpoints dynamically.
-        </small>
-    </footer>
-
-    <script>
-        // System Data Matrix Configuration Array
-        const creatorsData = [
-            { id: 'pbg', name: 'PBG' },
-Use code with caution.{ id: 'aem', name: 'AEM' },{ id: 'sd', name: 'SD' },{ id: 'bs', name: 'BS' },{ id: 'jd', name: 'JD' },{ id: 'lf', name: 'LF' }];// System Runtime Execution State Initializationwindow.addEventListener('DOMContentLoaded', () => {setWeekdayGreeting();applyFilters();initAiChat();});// Dynamic System Greeting Configuration Logic Loopfunction setWeekdayGreeting() {const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = days[new Date().getDay()];document.getElementById('welcome-title').innerText = Content Creators — Happy ${currentDay}!;}// Adaptive Graphical Layout Dark Mode Styling Switch Functionfunction toggleTheme() {const body = document.documentElement;if (body.getAttribute('data-theme') === 'dark') {body.removeAttribute('data-theme');} else {body.setAttribute('data-theme', 'dark');}}// Active Component Data Content Matrix Render Filter Loopfunction applyFilters() {const creatorFilter = document.getElementById('creator-select').value;const videoFilter = document.getElementById('filter-select').value;const container = document.getElementById('content-container');container.innerHTML = '';creatorsData.forEach(creator => {if (creatorFilter !== 'all' && creatorFilter !== creator.id) return;const card = document.createElement('div');card.className = 'creator-card';const title = document.createElement('h3');title.innerText = ${creator.name} Content Hub;card.appendChild(title);const mediaContainer = document.createElement('div');mediaContainer.className = 'media-container';const targetPath = https://github.io{creator.id}/media/;if (videoFilter === 'Current' || videoFilter === 'Last') {// Singular Object File Target Layout Instantiationconst videoElement = document.createElement('video');videoElement.src = ${targetPath}intro.mp4;videoElement.controls = true;videoElement.poster = ${targetPath}thumbnail.jpg;mediaContainer.appendChild(videoElement);card.appendChild(mediaContainer);} else if (videoFilter === 'Timeline') {// Multi-Item Historic Matrix Grid Instantiation Blockconst timelineGrid = document.createElement('div');timelineGrid.className = 'timeline-grid';// Creates a placeholder structural loop showing historical grid blocks availablefor(let i = 1; i <= 6; i++) {const gridItem = document.createElement('div');gridItem.className = 'timeline-item';gridItem.innerHTML = <img src="${targetPath}thumbnail.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Past Log ${i}">;timelineGrid.appendChild(gridItem);}card.appendChild(timelineGrid);}const link = document.createElement('a');link.href = https://github.io{creator.id}/;link.innerText = Explore Root Directory: /${creator.id}/;link.style.color = 'var(--ai-accent)';link.style.fontSize = '0.85rem';card.appendChild(link);container.appendChild(card);});}// AI Script Processing Flow Enginefunction initAiChat() {const messagesContainer = document.getElementById('ai-messages');const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = days[new Date().getDay()];messagesContainer.innerHTML = <div class="message bot"> Hello! Happy ${currentDay}! 😊<br><br> Which Content Creator are you interested in today? (PBG, AEM, SD, BS, JD, or LF?)<br><br> Would you like to see their latest videos, get a personalized recommendation, or learn how to join their Creator's Club membership? </div>;}function minimizeAI() {document.getElementById('ai-widget').classList.add('hidden');document.getElementById('ai-minimized').style.display = 'block';}function restoreAI() {document.getElementById('ai-widget').classList.remove('hidden');document.getElementById('ai-minimized').style.display = 'none';}function handleAiKeyPress(event) {if (event.key === 'Enter') sendAiMessage();}function sendAiMessage() {const inputEl = document.getElementById('ai-input');const query = inputEl.value.trim();if (!query) return;const messagesContainer = document.getElementById('ai-messages');// User Chat Fragment Insertionconst userMsg = document.createElement('div');userMsg.className = 'message user';userMsg.innerText = query;messagesContainer.appendChild(userMsg);inputEl.value = '';messagesContainer.scrollTop = messagesContainer.scrollHeight;// Automation Parsing Evaluation EnginesetTimeout(() => {const botMsg = document.createElement('div');botMsg.className = 'message bot';const normalized = query.toLowerCase();let matchedCreator = creatorsData.find(c => normalized.includes(c.id) || normalized.includes(c.name.toLowerCase()));if (matchedCreator) {botMsg.innerHTML = I detected your request for <strong>${matchedCreator.name}</strong>.<br><br> • <strong>Directory Path</strong>: https://github.io{matchedCreator.id}/<br> • <strong>Media Path</strong>: https://github.io{matchedCreator.id}/media/<br><br> Would you like me to switch the platform control filters directly to their root source layout logs?;} else if (normalized.includes('latest') || normalized.includes('video')) {botMsg.innerText = "I can pull the latest video assets directly from each directory path. Select 'Videos: Current' at the top control console to view them instantly.";} else if (normalized.includes('club') || normalized.includes('member')) {botMsg.innerText = "The official Creators' Club application processing module is located in your matching path endpoint layout files. Sign up inside your favorite profile!";} else {botMsg.innerText = "I can help you navigate all paths across pbg, aem, sd, bs, jd, and lf. Let me know which asset directory you want me to search!";}messagesContainer.appendChild(botMsg);messagesContainer.scrollTop = messagesContainer.scrollHeight;}, 600);}
+            This sub-node directory layout belongs exclusively to the PBG content stream asset system.© 2026 The AI Depot. All rights reserved. 
+            Content isolated within localized network folders.// System Data Initialization Logicwindow.addEventListener('DOMContentLoaded', ()
+            => {setWeekdayGreeting();applyLocalFilters();initAiChat();});// Dynamic System Greeting Configurationfunction setWeekdayGreeting()
+            {const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = 
+            days[new Date().getDay()];document.getElementById('welcome-title').innerText = PBG Hub — Happy ${currentDay}!;}// 
+            Adaptive Graphical Layout Dark Mode Styling Switch Functionfunction toggleTheme() {const body = document.documentElement;if
+            (body.getAttribute('data-theme') === 'dark') {body.removeAttribute('data-theme');} else {body.setAttribute('data-theme', 'dark');}}//
+            Local Filter Execution Matrix Strategyfunction applyLocalFilters() {const videoFilter = document.getElementById('filter-select').value;const
+            card = document.getElementById('pbg-card');const targetMediaFolder = "github.io";card.innerHTML = <h2>PBG Direct Content Stream</h2> <p>
+                Current Node Location: <code>https://github.io</code></p>;const mediaContainer = document.createElement('div')
+            ;mediaContainer.className = 'media-container';if (videoFilter === 'Current' || videoFilter === 'Last') 
+            {const videoElement = document.createElement('video');videoElement.src = ${targetMediaFolder}intro.mp4;videoElement.controls
+            = true;videoElement.poster = ${targetMediaFolder}thumbnail.jpg;mediaContainer.appendChild(videoElement);card.appendChild(mediaContainer);}
+            else if (videoFilter === 'Timeline') {const timelineGrid = document.createElement('div');timelineGrid.className =
+            'timeline-grid';for(let i = 1; i <= 6; i++) {const gridItem = document.createElement('div');gridItem.className =
+                'timeline-item';gridItem.innerHTML = <img src="${targetMediaFolder}thumbnail.jpg" alt="PBG Archive ${i}">;
+                timelineGrid.appendChild(gridItem);}card.appendChild(timelineGrid);}// Club Sign-up Segment block injectionconst 
+                clubBox = document.createElement('div');clubBox.className = 'club-signup-box';clubBox.innerHTML = <h3>PBG Creators' Club
+                </h3> <p>Become an official member of the premium club group tier!</p> <button class="club-btn" onclick="alert('Thank you for joining the PBG Creators Club!')">
+                    Join Club Tier</button>;card.appendChild(clubBox);}// Localized AI Knowledge Bot Enginefunction initAiChat() {const messagesContainer = 
+                document.getElementById('ai-messages');const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = 
+                days[new Date().getDay()];messagesContainer.innerHTML = <div class="message bot"> Welcome to the <strong>PBG Local Command Channel</strong>! 
+                    Happy ${currentDay}! 🎮<br><br> Would you like to examine our latest videos, receive a personalized recommendation, 
+                    or sign up for the PBG Creators' Club membership tier? </div>
+                ;}function minimizeAI() 
+                {document.getElementById
+                ('ai-widget').classList.add('hidden');
+                document.getElementById('ai-minimized').
+                style.display = 'block';}function restoreAI
+                () {document.getElementById('ai-widget').
+                classList.remove('hidden');document.getElementById('ai-minimized').style.display = 'none';}
+                function handleAiKeyPress(event) {if (event.key === 'Enter') sendAiMessage();}function sendAiMessage()
+                {const inputEl = document.getElementById('ai-input');const query = inputEl.value.trim();if (!query) return;const
+                messagesContainer = document.getElementById('ai-messages');const userMsg = document.createElement('div');userMsg.className = 
+                'message user';userMsg.innerText = query;messagesContainer.appendChild(userMsg);inputEl.value = '';messagesContainer.scrollTop = 
+                messagesContainer.scrollHeight;setTimeout(() => {const botMsg = document.createElement('div');botMsg.className = 'message bot';const normalized = 
+                query.toLowerCase();if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {botMsg.innerHTML = 
+                "Pulling data matrix... PBG's current active broadcast file is situated at github.io. Adjust the filter menu option to toggle view display styles.";} 
+                else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {botMsg.innerHTML = 
+                "You can instantly process your PBG Creators' Club membership activation application by engaging the interactive 
+                submission button inside the dashed dashboard panel on this page!";} else if (normalized.includes('recommend') || 
+                normalized.includes('suggest')) {botMsg.innerHTML = 
+                "System recommendation: Check out the Timeline View Filter to analyze the historic log sequence grid mapping out PBG's media progression layout.";}
+                else {botMsg.innerHTML = "I am specifically mapped to monitor the localized /pbg/ directory structures. 
+                Ask me about our background files, timeline stream elements, or premium club activation instructions!";}
+                messagesContainer.appendChild(botMsg);messagesContainer.scrollTop = messagesContainer.scrollHeight;}, 600);}
