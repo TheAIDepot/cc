@@ -1,119 +1,300 @@
-window.addEventListener('DOMContentLoaded', () => {
-    setWeekdayGreeting();
-    applyLocalFilters();
-    initAiChat();
-});
-
-function setWeekdayGreeting() {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const currentDay = days[new Date().getDay()];
-    document.getElementById('welcome-title').innerText = `Atomic Era Motors Hub — Happy ${currentDay}!`;
-}
-
-function toggleTheme() {
-    const body = document.documentElement;
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-    }
-}
-
-function applyLocalFilters() {
-    const videoFilter = document.getElementById('filter-select').value;
-    const card = document.getElementById('aem-card');
-    const targetMediaFolder = "https://github.io";
-    
-    card.innerHTML = `<h2>PBG Direct Content Stream</h2>
-                      <p>Current Node Location: <code>https://github.io</code></p>`;
-
-    const mediaContainer = document.createElement('div');
-    mediaContainer.className = 'media-container';
-
-    if (videoFilter === 'Current' || videoFilter === 'Last') {
-        const videoElement = document.createElement('video');
-        videoElement.src = targetMediaFolder + "intro.mp4";
-        videoElement.controls = true;
-        videoElement.poster = targetMediaFolder + "thumbnail.jpg";
-        mediaContainer.appendChild(videoElement);
-        card.appendChild(mediaContainer);
-    } else if (videoFilter === 'Timeline') {
-        const timelineGrid = document.createElement('div');
-        timelineGrid.className = 'timeline-grid';
-        
-        for(let i = 1; i <= 6; i++) {
-            const gridItem = document.createElement('div');
-            gridItem.className = 'timeline-item';
-            gridItem.innerHTML = `<img src="${targetMediaFolder}thumbnail.jpg" alt="AEM Archive ${i}">`;
-            timelineGrid.appendChild(gridItem);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atomic Era Motors™ HUB</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --border-color: #111111;
+            --ai-accent: #0066cc;
+            --card-bg: #f9f9f9;
         }
-        card.appendChild(timelineGrid);
-    }
+        [data-theme="dark"] {
+            --bg-color: #111111;
+            --text-color: #ffffff;
+            --border-color: #ffffff;
+            --card-bg: #222222;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: sans-serif;
+            padding-bottom: 80px;
+        }
+        .top-banners {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: rgba(0,0,0,0.05);
+            padding: 8px;
+            font-size: 0.85rem;
+        }
+        [data-theme="dark"] .top-banners {
+            background: rgba(255,255,255,0.05);
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .nav-back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--ai-accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        select {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .creator-card {
+            background: var(--card-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .media-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: 2px solid var(--border-color);
+            background: #000;
+            overflow: hidden;
+        }
+        .media-container video, .media-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .timeline-item {
+            border: 2px solid var(--border-color);
+            aspect-ratio: 16/9;
+            background: #333;
+            overflow: hidden;
+        }
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background: var(--bg-color);
+            border: 4px solid var(--ai-accent);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .ai-chat-header {
+            background: var(--ai-accent);
+            color: #ffffff;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ai-minimize-btn {
+            background: transparent;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 2px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .ai-chat-messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .message {
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 85%;
+        }
+        .message.bot {
+            background: rgba(0, 102, 204, 0.1);
+            align-self: flex-start;
+            border-left: 4px solid var(--ai-accent);
+            color: var(--text-color);
+        }
+        .message.user {
+            background: var(--text-color);
+            color: var(--bg-color);
+            align-self: flex-end;
+        }
+        .ai-chat-input-area {
+            display: flex;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding: 8px;
+        }
+        .ai-chat-input-area input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .ai-chat-input-area button {
+            background: var(--ai-accent);
+            color: #fff;
+            border: none;
+            padding: 0 16px;
+            margin-left: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .ai-minimized-trigger {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--ai-accent);
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+        }
+        .club-signup-box {
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px dashed var(--ai-accent);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .club-btn {
+            background: var(--ai-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 60px;
+            border-top: 2px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
 
-    const clubBox = document.createElement('div');
-    clubBox.className = 'club-signup-box';
-    clubBox.innerHTML = `<h3>Atomic Era Motors' Club</h3>
-                         <p>Become an official member of the premium club group tier!</p>
-                         <button class="club-btn" onclick="alert('Thank you for joining!')">Join Club Tier</button>`;
-    card.appendChild(clubBox);
-}
+    <div class="top-banners">
+        <span>[Banner] Creator Path Focus: /aem/media/</span>
+        <span>[Banner] Local Filter Active</span>
+    </div>
 
-function initAiChat() {
-    const messagesContainer = document.getElementById('ai-messages');
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const currentDay = days[new Date().getDay()];
+    <header>
+        <button class="theme-toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+        <h1 id="welcome-title">Atomic Era Motors™ Channel Matrix</h1>
+        <a href="../index.html" class="nav-back-link">&larr; Return to Main Hub</a>
+    </header>
 
-    messagesContainer.innerHTML = `
-        <div class="message bot">
-            Welcome to the <strong>Atomic Era Garage Channel</strong>! Happy ${currentDay}! 🎮<br><br>
-            Would you like to examine our latest videos, receive a personalized recommendation, or sign up for the Atomic Era Garage Creators' Club membership tier?
+    <div class="filter-controls">
+        <select id="filter-select" onchange="applyLocalFilters()">
+            <option value="Current">Videos: Current</option>
+            <option value="Last">Videos: Last</option>
+            <option value="Timeline">Videos: View Timeline</option>
+        </select>
+    </div>
+
+    <main class="content-wrapper">
+        <div class="creator-card" id="pbg-card"></div>
+    </main>
+
+    <div class="ai-chat-widget" id="ai-widget">
+        <div class="ai-chat-header">
+            <span>Atomic Era Motors™ Chat</span>
+            <button class="ai-minimize-btn" onclick="minimizeAI()">Minimize</button>
         </div>
-    `;
-}
+        <div class="ai-chat-messages" id="ai-messages"></div>
+        <div class="ai-chat-input-area">
+            <input type="text" id="ai-input" placeholder="Ask Atomic Era Motors™ AI..." onkeypress="handleAiKeyPress(event)">
+            <button onclick="sendAiMessage()">Send</button>
+        </div>
+    </div>
 
-function minimizeAI() {
-    document.getElementById('ai-widget').classList.add('hidden');
-    document.getElementById('ai-minimized').style.display = 'block';
-}
+    <button class="ai-minimized-trigger" id="ai-minimized" onclick="restoreAI()">text</button>
 
-function restoreAI() {
-    document.getElementById('ai-widget').classList.remove('hidden');
-    document.getElementById('ai-minimized').style.display = 'none';
-}
+    <footer>
+        <img src="https://github.io" alt="The AI Depot" class="footer-logo"><br>
+        <strong>Built by: The AI Depot</strong><br>
+        Email: contactaidepot@gmail.com | Phone: 707-506-6353<br><br>
+        <small>
+            YouTube™ is a trademark identification of Google LLC. Rumble™ is a trademark identification of Rumble Inc. 
+            This sub-node directory layout belongs exclusively to the Atomic Era Motors™ content stream asset system.<br>
+            &copy; 2026 The AI Depot™. All rights reserved. Content isolated within localized network folders.
+        </small>
+    </footer>
 
-function handleAiKeyPress(event) {
-    if (event.key === 'Enter') sendAiMessage();
-}
-
-function sendAiMessage() {
-    const inputEl = document.getElementById('ai-input');
-    const query = inputEl.value.trim();
-    if (!query) return;
-
-    const messagesContainer = document.getElementById('ai-messages');
-
-    const userMsg = document.createElement('div');
-    userMsg.className = 'message user';
-    userMsg.innerText = query;
-    messagesContainer.appendChild(userMsg);
-
-    inputEl.value = '';
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    setTimeout(() => {
-        const botMsg = document.createElement('div');
-        botMsg.className = 'message bot';
-        const normalized = query.toLowerCase();
-
-        if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {
-            botMsg.innerHTML = "Pulling data matrix... PBG's current active broadcast file is situated at <code>https://github.iointro.mp4</code>.";
-        } else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {
-            botMsg.innerHTML = "You can instantly process your AEM Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
-        } else {
-            botMsg.innerHTML = "I am specifically mapped to monitor the localized <code>/aem/</code> directory structures. Ask me about our background files or timeline stream elements!";
-        }
-
-        messagesContainer.appendChild(botMsg);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, 600);
-}
+    <!-- Linked directly to clean execution logic file -->
+    <script src="aem-script.js"></script>
+</body>
+</html>
