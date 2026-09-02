@@ -25,7 +25,7 @@ function applyLocalFilters() {
     const targetMediaFolder = "https://github.io/theaidepot/cc/aem/media";
     
     card.innerHTML = `<h2>PBG Direct Content Stream</h2>
-                      <p>Current Node Location: <code>https://theaidepot.github.io/cc/</code></p>`;
+                      <p>Current Node Location: <code>https://theaidepot.github.io/cc/aem/</code></p>`;
 
     const mediaContainer = document.createElement('div');
     mediaContainer.className = 'media-container';
