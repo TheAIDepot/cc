@@ -53,7 +53,7 @@ function applyFilters() {
         const mediaContainer = document.createElement('div');
         mediaContainer.className = 'media-container';
 
-        const targetPath = "https://github.io" + creator.id + "/media/";
+        const targetPath = "https://theaidepot.github.io/cc/" + creator.id + "/media/";
 
         if (videoFilter === 'Current' || videoFilter === 'Last') {
             const videoElement = document.createElement('video');
@@ -76,8 +76,8 @@ function applyFilters() {
         }
 
         const link = document.createElement('a');
-        link.href = "https://github.io" + creator.id + "/";
-        link.innerText = "Explore Root Directory: /" + creator.id + "/";
+        link.href = "https://theaidepot.github.io/cc/" + creator.id + "/";
+        link.innerText = "Explore Creators Page: /" + creator.id + "/";
         link.style.color = 'var(--ai-accent)';
         link.style.fontSize = '0.85rem';
         card.appendChild(link);
@@ -95,7 +95,7 @@ function initAiChat() {
     messagesContainer.innerHTML = `
         <div class="message bot">
             Hello! Happy ` + currentDay + `! 😊<br><br>
-            Which Content Creator are you interested in today? (PBG, AEM, SD, BS, JD, or LF?)<br><br>
+            Which Content Creator are you interested in today? (PoleBarnGarage, AtomicEraMotors, SuperDude, BuildSeason, JunkyardDigs, or LauraFarms?)<br><br>
             Would you like to see their latest videos, get a personalized recommendation, or learn how to join their Creator's Club membership?
         </div>
     `;
@@ -140,8 +140,8 @@ function sendAiMessage() {
         if (matchedCreator) {
             botMsg.innerHTML = `
                 I detected your request for <strong>` + matchedCreator.name + `</strong>.<br><br>
-                • <strong>Directory Path</strong>: https://github.io` + matchedCreator.id + `/<br>
-                • <strong>Media Path</strong>: https://github.io` + matchedCreator.id + `/media/<br><br>
+                • <strong>Directory Path</strong>: https://theaidepot.github.io/cc/` + matchedCreator.id + `/<br>
+                • <strong>Media Path</strong>: https://theaidepot.github.io/cc/` + matchedCreator.id + `/media/<br><br>
                 Would you like me to switch the platform control filters directly to their root source layout logs?
             `;
         } else if (normalized.includes('latest') || normalized.includes('video')) {
