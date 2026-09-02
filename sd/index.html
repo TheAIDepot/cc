@@ -1,11 +1,10 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Creators</title>
+    <title>POLE BARN GARAGE HUB</title>
     <style>
-        /* CSS Root and Theme Properties */
         :root {
             --bg-color: #ffffff;
             --text-color: #111111;
@@ -13,29 +12,24 @@ html<!DOCTYPE html>
             --ai-accent: #0066cc;
             --card-bg: #f9f9f9;
         }
-
         [data-theme="dark"] {
             --bg-color: #111111;
             --text-color: #ffffff;
             --border-color: #ffffff;
             --card-bg: #222222;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             transition: background-color 0.2s ease, border-color 0.2s ease;
         }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: sans-serif;
             padding-bottom: 80px;
         }
-
-        /* Top Utility Banners */
         .top-banners {
             display: flex;
             justify-content: center;
@@ -47,14 +41,11 @@ html<!DOCTYPE html>
         [data-theme="dark"] .top-banners {
             background: rgba(255,255,255,0.05);
         }
-
-        /* Header Layout */
         header {
             text-align: center;
             padding: 20px;
             position: relative;
         }
-
         .theme-toggle-btn {
             position: absolute;
             top: 20px;
@@ -67,15 +58,19 @@ html<!DOCTYPE html>
             border-radius: 4px;
             font-weight: bold;
         }
-
-        /* Controls Section */
+        .nav-back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--ai-accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
         .filter-controls {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
         }
-
         select {
             padding: 10px 20px;
             font-size: 1rem;
@@ -85,27 +80,20 @@ html<!DOCTYPE html>
             border-radius: 4px;
             cursor: pointer;
         }
-
-        /* Responsive Content Workspace Matrix */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+        .content-wrapper {
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         .creator-card {
             background: var(--card-bg);
             border: 3px solid var(--border-color);
             border-radius: 8px;
-            padding: 15px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 20px;
         }
-
         .media-container {
             width: 100%;
             aspect-ratio: 16/9;
@@ -113,27 +101,22 @@ html<!DOCTYPE html>
             background: #000;
             overflow: hidden;
         }
-
         .media-container video, .media-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-        /* Timeline View Specific Matrix Arrangement */
         .timeline-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 8px;
+            gap: 10px;
         }
         .timeline-item {
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             aspect-ratio: 16/9;
             background: #333;
+            overflow: hidden;
         }
-
-        /* AI Interactive Interface Widget Block */
         .ai-chat-widget {
             position: fixed;
             bottom: 20px;
@@ -148,7 +131,6 @@ html<!DOCTYPE html>
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             z-index: 1000;
         }
-
         .ai-chat-header {
             background: var(--ai-accent);
             color: #ffffff;
@@ -158,7 +140,6 @@ html<!DOCTYPE html>
             justify-content: space-between;
             align-items: center;
         }
-
         .ai-minimize-btn {
             background: transparent;
             border: 1px solid #ffffff;
@@ -167,7 +148,6 @@ html<!DOCTYPE html>
             cursor: pointer;
             border-radius: 4px;
         }
-
         .ai-chat-messages {
             flex: 1;
             padding: 12px;
@@ -177,32 +157,27 @@ html<!DOCTYPE html>
             gap: 10px;
             font-size: 0.9rem;
         }
-
         .message {
             padding: 8px 12px;
             border-radius: 8px;
             max-width: 85%;
         }
-
         .message.bot {
             background: rgba(0, 102, 204, 0.1);
             align-self: flex-start;
             border-left: 4px solid var(--ai-accent);
             color: var(--text-color);
         }
-
         .message.user {
             background: var(--text-color);
             color: var(--bg-color);
             align-self: flex-end;
         }
-
         .ai-chat-input-area {
             display: flex;
             border-top: 1px solid rgba(0,0,0,0.1);
             padding: 8px;
         }
-
         .ai-chat-input-area input {
             flex: 1;
             padding: 8px;
@@ -211,7 +186,6 @@ html<!DOCTYPE html>
             background: var(--bg-color);
             color: var(--text-color);
         }
-
         .ai-chat-input-area button {
             background: var(--ai-accent);
             color: #fff;
@@ -221,8 +195,6 @@ html<!DOCTYPE html>
             border-radius: 4px;
             cursor: pointer;
         }
-
-        /* Minimized Left-Bottom Trigger Launch Action */
         .ai-minimized-trigger {
             position: fixed;
             bottom: 20px;
@@ -238,8 +210,23 @@ html<!DOCTYPE html>
             display: none;
             z-index: 1000;
         }
-
-        /* Footer Element Section */
+        .club-signup-box {
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px dashed var(--ai-accent);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .club-btn {
+            background: var(--ai-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
         footer {
             margin-top: 60px;
             border-top: 2px solid var(--border-color);
@@ -248,12 +235,10 @@ html<!DOCTYPE html>
             font-size: 0.85rem;
             line-height: 1.6;
         }
-
         .footer-logo {
             height: 40px;
             margin-bottom: 10px;
         }
-
         .hidden {
             display: none !important;
         }
@@ -261,71 +246,55 @@ html<!DOCTYPE html>
 </head>
 <body>
 
-    <!-- Small Functional Top Banners -->
     <div class="top-banners">
-        <span>[Banner] Creators Archive Path: /media/creators_banner.jpg</span>
-        <span>[Banner] Video Filter Path: /media/filter_banner.jpg</span>
+        <span>[Banner] Creator Path Focus: /pbg/media/</span>
+        <span>[Banner] Local Filter Active</span>
     </div>
 
     <header>
         <button class="theme-toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
-        <h1 id="welcome-title">Content Creators</h1>
+        <h1 id="welcome-title">Pole Barn Garage Channel Matrix</h1>
+        <a href="../index.html" class="nav-back-link">&larr; Return to Main Hub</a>
     </header>
 
-    <!-- Platform Target Hub Control Selection Filters -->
     <div class="filter-controls">
-        <select id="creator-select" onchange="applyFilters()">
-            <option value="all">All Creators</option>
-            <option value="pbg">PBG</option>
-            <option value="aem">AEM</option>
-            <option value="sd">SD</option>
-            <option value="bs">BS</option>
-            <option value="jd">JD</option>
-            <option value="lf">LF</option>
-        </select>
-
-        <select id="filter-select" onchange="applyFilters()">
+        <select id="filter-select" onchange="applyLocalFilters()">
             <option value="Current">Videos: Current</option>
             <option value="Last">Videos: Last</option>
             <option value="Timeline">Videos: View Timeline</option>
         </select>
     </div>
 
-    <!-- Main Content Workspace Container -->
-    <main class="content-grid" id="content-container">
-        <!-- Rendered dynamically by JavaScript execution matrix below -->
+    <main class="content-wrapper">
+        <div class="creator-card" id="pbg-card"></div>
     </main>
 
-    <!-- AI Conversational Interface Assistant Widget Component -->
     <div class="ai-chat-widget" id="ai-widget">
         <div class="ai-chat-header">
-            <span>AI Assistant</span>
+            <span>Pole Barn Garage's Chat</span>
             <button class="ai-minimize-btn" onclick="minimizeAI()">Minimize</button>
         </div>
         <div class="ai-chat-messages" id="ai-messages"></div>
         <div class="ai-chat-input-area">
-            <input type="text" id="ai-input" placeholder="Ask about creator files..." onkeypress="handleAiKeyPress(event)">
+            <input type="text" id="ai-input" placeholder="Ask PBG AI..." onkeypress="handleAiKeyPress(event)">
             <button onclick="sendAiMessage()">Send</button>
         </div>
     </div>
 
-    <!-- Target Minimized Left-Bottom Activation Trigger UI Element -->
     <button class="ai-minimized-trigger" id="ai-minimized" onclick="restoreAI()">text</button>
 
-    <!-- System Layout Footer Element Structure -->
     <footer>
-        <img src="https://github.io" alt="The AI Depot Logo" class="footer-logo"><br>
+        <img src="https://github.io" alt="The AI Depot" class="footer-logo"><br>
         <strong>Built by: The AI Depot</strong><br>
         Email: contactaidepot@gmail.com | Phone: 707-506-6353<br><br>
         <small>
             YouTube™ is a trademark identification of Google LLC. Rumble™ is a trademark identification of Rumble Inc. 
-            This platform is an independent third-site concept layout built entirely by The AI Depot.<br>
-            &copy; 2026 The AI Depot. All rights reserved. Content pulled from root endpoints dynamically.
+            This sub-node directory layout belongs exclusively to the Pole Barn Garage™ content stream asset system.<br>
+            &copy; 2026 The AI Depot™. All rights reserved. Content isolated within localized network folders.
         </small>
     </footer>
 
-    <script>
-        // System Data Matrix Configuration Array
-        const creatorsData = [
-            { id: 'pbg', name: 'PBG' },
-Use code with caution.{ id: 'aem', name: 'AEM' },{ id: 'sd', name: 'SD' },{ id: 'bs', name: 'BS' },{ id: 'jd', name: 'JD' },{ id: 'lf', name: 'LF' }];// System Runtime Execution State Initializationwindow.addEventListener('DOMContentLoaded', () => {setWeekdayGreeting();applyFilters();initAiChat();});// Dynamic System Greeting Configuration Logic Loopfunction setWeekdayGreeting() {const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = days[new Date().getDay()];document.getElementById('welcome-title').innerText = Content Creators — Happy ${currentDay}!;}// Adaptive Graphical Layout Dark Mode Styling Switch Functionfunction toggleTheme() {const body = document.documentElement;if (body.getAttribute('data-theme') === 'dark') {body.removeAttribute('data-theme');} else {body.setAttribute('data-theme', 'dark');}}// Active Component Data Content Matrix Render Filter Loopfunction applyFilters() {const creatorFilter = document.getElementById('creator-select').value;const videoFilter = document.getElementById('filter-select').value;const container = document.getElementById('content-container');container.innerHTML = '';creatorsData.forEach(creator => {if (creatorFilter !== 'all' && creatorFilter !== creator.id) return;const card = document.createElement('div');card.className = 'creator-card';const title = document.createElement('h3');title.innerText = ${creator.name} Content Hub;card.appendChild(title);const mediaContainer = document.createElement('div');mediaContainer.className = 'media-container';const targetPath = https://github.io{creator.id}/media/;if (videoFilter === 'Current' || videoFilter === 'Last') {// Singular Object File Target Layout Instantiationconst videoElement = document.createElement('video');videoElement.src = ${targetPath}intro.mp4;videoElement.controls = true;videoElement.poster = ${targetPath}thumbnail.jpg;mediaContainer.appendChild(videoElement);card.appendChild(mediaContainer);} else if (videoFilter === 'Timeline') {// Multi-Item Historic Matrix Grid Instantiation Blockconst timelineGrid = document.createElement('div');timelineGrid.className = 'timeline-grid';// Creates a placeholder structural loop showing historical grid blocks availablefor(let i = 1; i <= 6; i++) {const gridItem = document.createElement('div');gridItem.className = 'timeline-item';gridItem.innerHTML = <img src="${targetPath}thumbnail.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Past Log ${i}">;timelineGrid.appendChild(gridItem);}card.appendChild(timelineGrid);}const link = document.createElement('a');link.href = https://github.io{creator.id}/;link.innerText = Explore Root Directory: /${creator.id}/;link.style.color = 'var(--ai-accent)';link.style.fontSize = '0.85rem';card.appendChild(link);container.appendChild(card);});}// AI Script Processing Flow Enginefunction initAiChat() {const messagesContainer = document.getElementById('ai-messages');const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = days[new Date().getDay()];messagesContainer.innerHTML = <div class="message bot"> Hello! Happy ${currentDay}! 😊<br><br> Which Content Creator are you interested in today? (PBG, AEM, SD, BS, JD, or LF?)<br><br> Would you like to see their latest videos, get a personalized recommendation, or learn how to join their Creator's Club membership? </div>;}function minimizeAI() {document.getElementById('ai-widget').classList.add('hidden');document.getElementById('ai-minimized').style.display = 'block';}function restoreAI() {document.getElementById('ai-widget').classList.remove('hidden');document.getElementById('ai-minimized').style.display = 'none';}function handleAiKeyPress(event) {if (event.key === 'Enter') sendAiMessage();}function sendAiMessage() {const inputEl = document.getElementById('ai-input');const query = inputEl.value.trim();if (!query) return;const messagesContainer = document.getElementById('ai-messages');// User Chat Fragment Insertionconst userMsg = document.createElement('div');userMsg.className = 'message user';userMsg.innerText = query;messagesContainer.appendChild(userMsg);inputEl.value = '';messagesContainer.scrollTop = messagesContainer.scrollHeight;// Automation Parsing Evaluation EnginesetTimeout(() => {const botMsg = document.createElement('div');botMsg.className = 'message bot';const normalized = query.toLowerCase();let matchedCreator = creatorsData.find(c => normalized.includes(c.id) || normalized.includes(c.name.toLowerCase()));if (matchedCreator) {botMsg.innerHTML = I detected your request for <strong>${matchedCreator.name}</strong>.<br><br> • <strong>Directory Path</strong>: https://github.io{matchedCreator.id}/<br> • <strong>Media Path</strong>: https://github.io{matchedCreator.id}/media/<br><br> Would you like me to switch the platform control filters directly to their root source layout logs?;} else if (normalized.includes('latest') || normalized.includes('video')) {botMsg.innerText = "I can pull the latest video assets directly from each directory path. Select 'Videos: Current' at the top control console to view them instantly.";} else if (normalized.includes('club') || normalized.includes('member')) {botMsg.innerText = "The official Creators' Club application processing module is located in your matching path endpoint layout files. Sign up inside your favorite profile!";} else {botMsg.innerText = "I can help you navigate all paths across pbg, aem, sd, bs, jd, and lf. Let me know which asset directory you want me to search!";}messagesContainer.appendChild(botMsg);messagesContainer.scrollTop = messagesContainer.scrollHeight;}, 600);}
+    <!-- Linked directly to clean execution logic file -->
+    <script src="pbg-script.js"></script>
+</body>
+</html>
