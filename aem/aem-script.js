@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function setWeekdayGreeting() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const currentDay = days[new Date().getDay()];
-    document.getElementById('welcome-title').innerText = `PBG Hub — Happy ${currentDay}!`;
+    document.getElementById('welcome-title').innerText = `Atomic Era Motor Hub — Happy ${currentDay}!`;
 }
 
 function toggleTheme() {
@@ -25,7 +25,7 @@ function applyLocalFilters() {
     const targetMediaFolder = "https://github.io/theaidepot/cc/aem/media";
     
     card.innerHTML = `<h2>PBG Direct Content Stream</h2>
-                      <p>Current Node Location: <code>https://github.io</code></p>`;
+                      <p>Current Node Location: <code>https://theaidepot.github.io/cc/</code></p>`;
 
     const mediaContainer = document.createElement('div');
     mediaContainer.className = 'media-container';
