@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBG Hub — Content Creators</title>
     <style>
-        /* CSS Root and Theme Properties */
         :root {
             --bg-color: #ffffff;
             --text-color: #111111;
@@ -13,29 +12,24 @@
             --ai-accent: #0066cc;
             --card-bg: #f9f9f9;
         }
-
         [data-theme="dark"] {
             --bg-color: #111111;
             --text-color: #ffffff;
             --border-color: #ffffff;
             --card-bg: #222222;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             transition: background-color 0.2s ease, border-color 0.2s ease;
         }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: sans-serif;
             padding-bottom: 80px;
         }
-
-        /* Top Utility Banners */
         .top-banners {
             display: flex;
             justify-content: center;
@@ -47,14 +41,11 @@
         [data-theme="dark"] .top-banners {
             background: rgba(255,255,255,0.05);
         }
-
-        /* Header Layout */
         header {
             text-align: center;
             padding: 20px;
             position: relative;
         }
-
         .theme-toggle-btn {
             position: absolute;
             top: 20px;
@@ -67,7 +58,6 @@
             border-radius: 4px;
             font-weight: bold;
         }
-
         .nav-back-link {
             display: inline-block;
             margin-top: 10px;
@@ -75,15 +65,12 @@
             text-decoration: none;
             font-weight: bold;
         }
-
-        /* Controls Section */
         .filter-controls {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
         }
-
         select {
             padding: 10px 20px;
             font-size: 1rem;
@@ -93,14 +80,11 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
-        /* Content Workspace Card */
         .content-wrapper {
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         .creator-card {
             background: var(--card-bg);
             border: 3px solid var(--border-color);
@@ -110,7 +94,6 @@
             flex-direction: column;
             gap: 20px;
         }
-
         .media-container {
             width: 100%;
             aspect-ratio: 16/9;
@@ -118,14 +101,11 @@
             background: #000;
             overflow: hidden;
         }
-
         .media-container video, .media-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-        /* Timeline Grid View Layout */
         .timeline-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -137,8 +117,6 @@
             background: #333;
             overflow: hidden;
         }
-
-        /* AI Interactive Interface Widget Block */
         .ai-chat-widget {
             position: fixed;
             bottom: 20px;
@@ -153,7 +131,6 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             z-index: 1000;
         }
-
         .ai-chat-header {
             background: var(--ai-accent);
             color: #ffffff;
@@ -163,7 +140,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .ai-minimize-btn {
             background: transparent;
             border: 1px solid #ffffff;
@@ -172,7 +148,6 @@
             cursor: pointer;
             border-radius: 4px;
         }
-
         .ai-chat-messages {
             flex: 1;
             padding: 12px;
@@ -182,32 +157,27 @@
             gap: 10px;
             font-size: 0.9rem;
         }
-
         .message {
             padding: 8px 12px;
             border-radius: 8px;
             max-width: 85%;
         }
-
         .message.bot {
             background: rgba(0, 102, 204, 0.1);
             align-self: flex-start;
             border-left: 4px solid var(--ai-accent);
             color: var(--text-color);
         }
-
         .message.user {
             background: var(--text-color);
             color: var(--bg-color);
             align-self: flex-end;
         }
-
         .ai-chat-input-area {
             display: flex;
             border-top: 1px solid rgba(0,0,0,0.1);
             padding: 8px;
         }
-
         .ai-chat-input-area input {
             flex: 1;
             padding: 8px;
@@ -216,7 +186,6 @@
             background: var(--bg-color);
             color: var(--text-color);
         }
-
         .ai-chat-input-area button {
             background: var(--ai-accent);
             color: #fff;
@@ -226,8 +195,6 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
-        /* Minimized Left-Bottom Trigger Launch Action */
         .ai-minimized-trigger {
             position: fixed;
             bottom: 20px;
@@ -243,8 +210,6 @@
             display: none;
             z-index: 1000;
         }
-
-        /* Club Registration Module Styles */
         .club-signup-box {
             margin-top: 15px;
             padding: 15px;
@@ -262,8 +227,6 @@
             margin-top: 10px;
             font-weight: bold;
         }
-
-        /* Footer Element Section */
         footer {
             margin-top: 60px;
             border-top: 2px solid var(--border-color);
@@ -272,12 +235,10 @@
             font-size: 0.85rem;
             line-height: 1.6;
         }
-
         .footer-logo {
             height: 40px;
             margin-bottom: 10px;
         }
-
         .hidden {
             display: none !important;
         }
@@ -285,7 +246,6 @@
 </head>
 <body>
 
-    <!-- Small Functional Top Banners -->
     <div class="top-banners">
         <span>[Banner] Creator Path Focus: /pbg/media/</span>
         <span>[Banner] Local Filter Active</span>
@@ -294,10 +254,9 @@
     <header>
         <button class="theme-toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
         <h1 id="welcome-title">PBG Channel Matrix</h1>
-        <a href="../index.html" class="nav-back-link">&larr; Return to Main Platform Hub</a>
+        <a href="../index.html" class="nav-back-link">&larr; Return to Main Hub</a>
     </header>
 
-    <!-- Local Media Control Filter Engine -->
     <div class="filter-controls">
         <select id="filter-select" onchange="applyLocalFilters()">
             <option value="Current">Videos: Current</option>
@@ -306,14 +265,10 @@
         </select>
     </div>
 
-    <!-- Creator Repository Main Node Block -->
     <main class="content-wrapper">
-        <div class="creator-card" id="pbg-card">
-            <!-- Populated dynamically via the script logic below -->
-        </div>
+        <div class="creator-card" id="pbg-card"></div>
     </main>
 
-    <!-- AI Conversational Interface Assistant Widget Component -->
     <div class="ai-chat-widget" id="ai-widget">
         <div class="ai-chat-header">
             <span>PBG Channel AI Bot</span>
@@ -321,20 +276,25 @@
         </div>
         <div class="ai-chat-messages" id="ai-messages"></div>
         <div class="ai-chat-input-area">
-            <input type="text" id="ai-input" placeholder="Ask PBG AI Bot anything..." onkeypress="handleAiKeyPress(event)">
+            <input type="text" id="ai-input" placeholder="Ask PBG AI..." onkeypress="handleAiKeyPress(event)">
             <button onclick="sendAiMessage()">Send</button>
         </div>
     </div>
 
-    <!-- Target Minimized Left-Bottom Activation Trigger UI Element -->
     <button class="ai-minimized-trigger" id="ai-minimized" onclick="restoreAI()">text</button>
 
-    <!-- System Layout Footer Element Structure -->
     <footer>
-        <img src="https://github.io" alt="The AI Depot Logo" class="footer-logo"><br>
+        <img src="https://github.io" alt="The AI Depot" class="footer-logo"><br>
         <strong>Built by: The AI Depot</strong><br>
         Email: contactaidepot@gmail.com | Phone: 707-506-6353<br><br>
         <small>
             YouTube™ is a trademark identification of Google LLC. Rumble™ is a trademark identification of Rumble Inc. 
-         
-               This sub-node directory layout belongs exclusively to the PBG content stream asset system.© 2026 The AI Depot. All rights reserved. Content isolated within localized network folders.// System Data Initialization Logicwindow.addEventListener('DOMContentLoaded', () => {setWeekdayGreeting();applyLocalFilters();initAiChat();});// Dynamic System Greeting Configurationfunction setWeekdayGreeting() {const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = days[new Date().getDay()];document.getElementById('welcome-title').innerText = PBG Hub — Happy ${currentDay}!;}// Adaptive Graphical Layout Dark Mode Styling Switch Functionfunction toggleTheme() {const body = document.documentElement;if (body.getAttribute('data-theme') === 'dark') {body.removeAttribute('data-theme');} else {body.setAttribute('data-theme', 'dark');}}// Local Filter Execution Matrix Strategyfunction applyLocalFilters() {const videoFilter = document.getElementById('filter-select').value;const card = document.getElementById('pbg-card');const targetMediaFolder = "github.io";card.innerHTML = <h2>PBG Direct Content Stream</h2> <p>Current Node Location: <code>https://github.io</code></p>;const mediaContainer = document.createElement('div');mediaContainer.className = 'media-container';if (videoFilter === 'Current' || videoFilter === 'Last') {const videoElement = document.createElement('video');videoElement.src = ${targetMediaFolder}intro.mp4;videoElement.controls = true;videoElement.poster = ${targetMediaFolder}thumbnail.jpg;mediaContainer.appendChild(videoElement);card.appendChild(mediaContainer);} else if (videoFilter === 'Timeline') {const timelineGrid = document.createElement('div');timelineGrid.className = 'timeline-grid';for(let i = 1; i <= 6; i++) {const gridItem = document.createElement('div');gridItem.className = 'timeline-item';gridItem.innerHTML = <img src="${targetMediaFolder}thumbnail.jpg" alt="PBG Archive ${i}">;timelineGrid.appendChild(gridItem);}card.appendChild(timelineGrid);}// Club Sign-up Segment block injectionconst clubBox = document.createElement('div');clubBox.className = 'club-signup-box';clubBox.innerHTML = <h3>PBG Creators' Club</h3> <p>Become an official member of the premium club group tier!</p> <button class="club-btn" onclick="alert('Thank you for joining the PBG Creators Club!')">Join Club Tier</button>;card.appendChild(clubBox);}// Localized AI Knowledge Bot Enginefunction initAiChat() {const messagesContainer = document.getElementById('ai-messages');const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];const currentDay = days[new Date().getDay()];messagesContainer.innerHTML = <div class="message bot"> Welcome to the <strong>PBG Local Command Channel</strong>! Happy ${currentDay}! 🎮<br><br> Would you like to examine our latest videos, receive a personalized recommendation, or sign up for the PBG Creators' Club membership tier? </div>;}function minimizeAI() {document.getElementById('ai-widget').classList.add('hidden');document.getElementById('ai-minimized').style.display = 'block';}function restoreAI() {document.getElementById('ai-widget').classList.remove('hidden');document.getElementById('ai-minimized').style.display = 'none';}function handleAiKeyPress(event) {if (event.key === 'Enter') sendAiMessage();}function sendAiMessage() {const inputEl = document.getElementById('ai-input');const query = inputEl.value.trim();if (!query) return;const messagesContainer = document.getElementById('ai-messages');const userMsg = document.createElement('div');userMsg.className = 'message user';userMsg.innerText = query;messagesContainer.appendChild(userMsg);inputEl.value = '';messagesContainer.scrollTop = messagesContainer.scrollHeight;setTimeout(() => {const botMsg = document.createElement('div');botMsg.className = 'message bot';const normalized = query.toLowerCase();if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {botMsg.innerHTML = "Pulling data matrix... PBG's current active broadcast file is situated at github.io. Adjust the filter menu option to toggle view display styles.";} else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {botMsg.innerHTML = "You can instantly process your PBG Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";} else if (normalized.includes('recommend') || normalized.includes('suggest')) {botMsg.innerHTML = "System recommendation: Check out the Timeline View Filter to analyze the historic log sequence grid mapping out PBG's media progression layout.";} else {botMsg.innerHTML = "I am specifically mapped to monitor the localized /pbg/ directory structures. Ask me about our background files, timeline stream elements, or premium club activation instructions!";}messagesContainer.appendChild(botMsg);messagesContainer.scrollTop = messagesContainer.scrollHeight;}, 600);}
+            This sub-node directory layout belongs exclusively to the PBG content stream asset system.<br>
+            &copy; 2026 The AI Depot. All rights reserved. Content isolated within localized network folders.
+        </small>
+    </footer>
+
+    <!-- Linked directly to clean execution logic file -->
+    <script src="pbg-script.js"></script>
+</body>
+</html>
