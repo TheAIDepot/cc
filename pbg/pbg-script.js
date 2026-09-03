@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function setWeekdayGreeting() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const currentDay = days[new Date().getDay()];
-    document.getElementById('welcome-title').innerText = `PBG Hub — Happy ${currentDay}!`;
+    document.getElementById('welcome-title').innerText = `Pole Barn Garage™ Hub — Happy ${currentDay}!`;
 }
 
 function toggleTheme() {
@@ -22,7 +22,7 @@ function toggleTheme() {
 function applyLocalFilters() {
     const videoFilter = document.getElementById('filter-select').value;
     const card = document.getElementById('pbg-card');
-    const targetMediaFolder = "https://github.io";
+    const targetMediaFolder = "https://github.io/TheAIDepot/cc/pbg/media/";
     
     card.innerHTML = `<h2>PBG Direct Content Stream</h2>
                       <p>Current Node Location: <code>https://github.io</code></p>`;
