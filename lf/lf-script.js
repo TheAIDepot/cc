@@ -24,8 +24,8 @@ function applyLocalFilters() {
     const card = document.getElementById('lf-card');
     const targetMediaFolder = "https://github.io";
     
-    card.innerHTML = `<h2>PBG Direct Content Stream</h2>
-                      <p>Current Node Location: <code>https://github.io</code></p>`;
+    card.innerHTML = `<h2>Laura Farms™ Direct Content Stream</h2>
+                      <p>Current Video Below</p>`;
 
     const mediaContainer = document.createElement('div');
     mediaContainer.className = 'media-container';
@@ -44,7 +44,7 @@ function applyLocalFilters() {
         for(let i = 1; i <= 6; i++) {
             const gridItem = document.createElement('div');
             gridItem.className = 'timeline-item';
-            gridItem.innerHTML = `<img src="${targetMediaFolder}lf_image1.png" alt="PBG Archive ${i}">`;
+            gridItem.innerHTML = `<img src="${/media/}lf_image1.png" alt="Laura Farms™ Archive ${i}">`;
             timelineGrid.appendChild(gridItem);
         }
         card.appendChild(timelineGrid);
@@ -54,7 +54,7 @@ function applyLocalFilters() {
     clubBox.className = 'club-signup-box';
     clubBox.innerHTML = `<h3>Laura Farms™ Creators' Club</h3>
                          <p>Become an official member of the premium club group tier!</p>
-                         <button class="club-btn" onclick="alert('Thank you for joining!')">Join Club Tier</button>`;
+                         <button class="club-btn" onclick="alert('Thank you for joining Laura Farms™!')">Join Club Tier</button>`;
     card.appendChild(clubBox);
 }
 
