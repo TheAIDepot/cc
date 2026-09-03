@@ -20,15 +20,21 @@ function toggleTheme() {
 }
 
 function applyLocalFilters() {
-    const videoFilter = document.getElementById('filter-select').value;
-    const card = document.getElementById('lf-card');
+    const videoFilter = document.getElementById('filter-select').value; 
+const card = document.getElementById('lf-card'); 
     const targetMediaFolder = "https://github.io";
     
     card.innerHTML = `<h2>Laura Farms™ Direct Content Stream</h2>
                       <p>Current Video Below</p>`;
 
     const mediaContainer = document.createElement('div');
-    mediaContainer.className = 'media-container';
+    mediaContainer.className = <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/HLRymCzdU6M?si=kz2ilw5Y8v2IIDP4" 
+        title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+            </iframe>;
 
     if (videoFilter === 'Current' || videoFilter === 'Last') {
         const videoElement = document.createElement('video');
