@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 function setWeekdayGreeting() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const currentDay = days[new Date().getDay()];
-    document.getElementById('welcome-title').innerText = `Laura Farms Hub — Happy ${currentDay}!`;
+    document.getElementById('welcome-title').innerText = `Laura Farms™ Hub — Happy ${currentDay}!`;
 }
 
 function toggleTheme() {
@@ -52,7 +52,7 @@ function applyLocalFilters() {
 
     const clubBox = document.createElement('div');
     clubBox.className = 'club-signup-box';
-    clubBox.innerHTML = `<h3>Laura Farms Creators' Club</h3>
+    clubBox.innerHTML = `<h3>Laura Farms™ Creators' Club</h3>
                          <p>Become an official member of the premium club group tier!</p>
                          <button class="club-btn" onclick="alert('Thank you for joining!')">Join Club Tier</button>`;
     card.appendChild(clubBox);
@@ -65,8 +65,8 @@ function initAiChat() {
 
     messagesContainer.innerHTML = `
         <div class="message bot">
-            Welcome to the <strong>Laura Farms Local Command Channel</strong>! Happy ${currentDay}! 🎮<br><br>
-            Would you like to examine our latest videos, receive a personalized recommendation, or sign up for the Laura Farms Creators' Club membership tier?
+            Welcome to the <strong>Laura Farms™ Local Command Channel</strong>! Happy ${currentDay}! 🎮<br><br>
+            Would you like to examine our latest videos, receive a personalized recommendation, or sign up for the Laura Farms™ Creators' Club membership tier?
         </div>
     `;
 }
@@ -106,9 +106,9 @@ function sendAiMessage() {
         const normalized = query.toLowerCase();
 
         if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {
-            botMsg.innerHTML = "Pulling data matrix... Laura Farms current active broadcast file is situated at <code>https://github.io/theaidepot/cc/lf/media/intro.mp4</code>.";
+            botMsg.innerHTML = "Pulling data matrix... Laura Farms™ current active broadcast file is situated at <code>https://github.io/theaidepot/cc/lf/media/intro.mp4</code>.";
         } else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {
-            botMsg.innerHTML = "You can instantly process your Laura Farms Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
+            botMsg.innerHTML = "You can instantly process your Laura Farms™ Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
         } else {
             botMsg.innerHTML = "I am specifically mapped to monitor the localized <code>/lf/</code> directory structures. Ask me about our background files or timeline stream elements!";
         }
