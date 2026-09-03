@@ -21,7 +21,7 @@ function toggleTheme() {
 
 function applyLocalFilters() {
     const videoFilter = document.getElementById('filter-select').value;
-    const card = document.getElementById('pbg-card');
+    const card = document.getElementById('lf-card');
     const targetMediaFolder = "https://github.io";
     
     card.innerHTML = `<h2>PBG Direct Content Stream</h2>
@@ -34,7 +34,7 @@ function applyLocalFilters() {
         const videoElement = document.createElement('video');
         videoElement.src = targetMediaFolder + "intro.mp4";
         videoElement.controls = true;
-        videoElement.poster = targetMediaFolder + "thumbnail.jpg";
+        videoElement.poster = targetMediaFolder + "lf_image1.png";
         mediaContainer.appendChild(videoElement);
         card.appendChild(mediaContainer);
     } else if (videoFilter === 'Timeline') {
@@ -44,7 +44,7 @@ function applyLocalFilters() {
         for(let i = 1; i <= 6; i++) {
             const gridItem = document.createElement('div');
             gridItem.className = 'timeline-item';
-            gridItem.innerHTML = `<img src="${targetMediaFolder}thumbnail.jpg" alt="PBG Archive ${i}">`;
+            gridItem.innerHTML = `<img src="${targetMediaFolder}lf_image1.png" alt="PBG Archive ${i}">`;
             timelineGrid.appendChild(gridItem);
         }
         card.appendChild(timelineGrid);
@@ -52,7 +52,7 @@ function applyLocalFilters() {
 
     const clubBox = document.createElement('div');
     clubBox.className = 'club-signup-box';
-    clubBox.innerHTML = `<h3>PBG Creators' Club</h3>
+    clubBox.innerHTML = `<h3>Laura Farms Creators' Club</h3>
                          <p>Become an official member of the premium club group tier!</p>
                          <button class="club-btn" onclick="alert('Thank you for joining!')">Join Club Tier</button>`;
     card.appendChild(clubBox);
@@ -65,8 +65,8 @@ function initAiChat() {
 
     messagesContainer.innerHTML = `
         <div class="message bot">
-            Welcome to the <strong>PBG Local Command Channel</strong>! Happy ${currentDay}! 🎮<br><br>
-            Would you like to examine our latest videos, receive a personalized recommendation, or sign up for the PBG Creators' Club membership tier?
+            Welcome to the <strong>Laura Farms Local Command Channel</strong>! Happy ${currentDay}! 🎮<br><br>
+            Would you like to examine our latest videos, receive a personalized recommendation, or sign up for the Laura Farms Creators' Club membership tier?
         </div>
     `;
 }
@@ -106,11 +106,11 @@ function sendAiMessage() {
         const normalized = query.toLowerCase();
 
         if (normalized.includes('latest') || normalized.includes('video') || normalized.includes('current')) {
-            botMsg.innerHTML = "Pulling data matrix... PBG's current active broadcast file is situated at <code>https://github.iointro.mp4</code>.";
+            botMsg.innerHTML = "Pulling data matrix... Laura Farms current active broadcast file is situated at <code>https://github.io/theaidepot/cc/lf/media/intro.mp4</code>.";
         } else if (normalized.includes('club') || normalized.includes('member') || normalized.includes('join')) {
-            botMsg.innerHTML = "You can instantly process your PBG Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
+            botMsg.innerHTML = "You can instantly process your Laura Farms Creators' Club membership activation application by engaging the interactive submission button inside the dashed dashboard panel on this page!";
         } else {
-            botMsg.innerHTML = "I am specifically mapped to monitor the localized <code>/pbg/</code> directory structures. Ask me about our background files or timeline stream elements!";
+            botMsg.innerHTML = "I am specifically mapped to monitor the localized <code>/lf/</code> directory structures. Ask me about our background files or timeline stream elements!";
         }
 
         messagesContainer.appendChild(botMsg);
